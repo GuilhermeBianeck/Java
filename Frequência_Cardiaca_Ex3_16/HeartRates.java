@@ -17,7 +17,7 @@ public class HeartRates
 	// MÈTODO CONSTRUTOR
 	public HeartRates (String userNome, String userSobrenome, int userDia, int userMes, int userAno, int anoAtual, int mesAtual, int diaAtual)
 	{
-		//Atribuindo valores
+		//Atribuindo valores da Main para a classe HeartRates
 		this.nome = userNome;
 		this.sobrenome = userSobrenome;
 		this.nascDia = userDia;
@@ -27,8 +27,9 @@ public class HeartRates
 		this.mes = mesAtual;
 		this.ano = anoAtual;
 	}
+	
 
-	// Métodos Get > Atribuição de valores.
+	// Métodos Get -> Atribuição de valores.
 	public String getNome(){
 		return nome;
 	}
@@ -36,7 +37,7 @@ public class HeartRates
 		return sobrenome;
 	}
 	public int getNascDia(){
-		return nascDia;
+		return nascDia;z
 	}
 	public int getNascMes(){
 		return nascMes;
@@ -65,6 +66,7 @@ public class HeartRates
 	public double getFa2(){
 		return fa2;
 	}
+
 
 	//Métodos para definir valores.
 	public int idade(){
