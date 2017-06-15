@@ -1,5 +1,7 @@
 package Cliente;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import javax.swing.JOptionPane;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
@@ -86,6 +88,10 @@ public class TelaAbrirConta extends javax.swing.JFrame {
                     abrirContaActionPerformed(evt);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(TelaAbrirConta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(TelaAbrirConta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(TelaAbrirConta.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -160,7 +166,7 @@ public class TelaAbrirConta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void abrirContaActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_abrirContaActionPerformed
+    private void abrirContaActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, FileNotFoundException, UnsupportedEncodingException {//GEN-FIRST:event_abrirContaActionPerformed
         int i=0;
         this.idC= Integer.parseInt(this.idContaText1.getText());
         this.senha=Integer.parseInt(this.senhaText.getText());
@@ -168,7 +174,7 @@ public class TelaAbrirConta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ID e/ou Senha não podem conter valores negativos!", "InfoBox: " + "Erro", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if(this.banco.abrirConta(idC,senha)){
+        if(this.banco.abrirConta(idC,senha,0)){
             JOptionPane.showMessageDialog(null, "Conta Criada com sucesso!", "InfoBox: " + "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.idContaText1.setText("");
             this.senhaText.setText("");

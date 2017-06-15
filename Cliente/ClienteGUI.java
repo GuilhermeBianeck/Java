@@ -118,6 +118,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         this.setVisible(false);
         this.Tlogin.setBanco(this.banco);
         this.Tlogin.setParent(this);
+        this.Tlogin.reiniciaJanela();
         this.Tlogin.setVisible(true);
     }//GEN-LAST:event_efetuarLogingActionPerformed
 
