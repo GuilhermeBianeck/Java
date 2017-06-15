@@ -10,10 +10,47 @@ package Cliente;
 
 /**
  *
- * @author gabriel
+ * @author eu
  */
 public class bInterface extends javax.swing.JFrame {
 
+    private  String idC="",senha="";
+    private ClienteGUI parent;
+    private final TelaLogado logado;
+    private int controle=4;
+    private float saldo=0;
+    
+    Banco banco;
+
+    public int getIdC() {
+        return Integer.parseInt(this.idC);
+    }
+
+    public void setIdC(String idC) {
+        this.idC = idC;
+    }
+
+    public int getSenha() {
+        return Integer.parseInt(this.senha);
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
+        this.logado.setBanco(banco);
+    }
+
+    @Override
+    public ClienteGUI getParent() {
+        return parent;
+    }
+
+    public void setParent(ClienteGUI parent) {
+        this.parent = parent;
+    }
  
     
     /**
@@ -21,6 +58,12 @@ public class bInterface extends javax.swing.JFrame {
      */
     public bInterface() {
         initComponents();
+        this.logado= new TelaLogado();
+        if(controle == 4){
+        this.jLabel3.setText("Bem Vindo!");
+        this.jLabel4.setText("Porfavor entre com o numero da conta: ");
+        this.jLabel5.setText("Porfavor entre com a senha: ");
+        
     }
     
 
@@ -31,7 +74,7 @@ public class bInterface extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-    
+        
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -47,14 +90,23 @@ public class bInterface extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton0 = new javax.swing.JButton();
         jButtonEnter = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         depositMoney = new javax.swing.JButton();
         withdrawMoney = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton10 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -67,7 +119,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -85,7 +137,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -103,7 +155,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -121,7 +173,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -139,7 +191,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -157,7 +209,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -175,7 +227,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -193,7 +245,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -211,7 +263,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 9;
@@ -229,9 +281,9 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.ipadx = 42;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.2;
@@ -247,28 +299,14 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jButtonEnter, gridBagConstraints);
-
-        jTextArea1.setColumns(9);
-        jTextArea1.setRows(7);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
 
         depositMoney.setText("---------------");
         depositMoney.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true), "DEPOSITE O ENVELOPE AQUI"));
@@ -279,7 +317,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -295,7 +333,7 @@ public class bInterface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -303,11 +341,10 @@ public class bInterface extends javax.swing.JFrame {
         getContentPane().add(withdrawMoney, gridBagConstraints);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("jLabel1");
         jLabel1.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel1, gridBagConstraints);
@@ -326,6 +363,100 @@ public class bInterface extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        jButton10.setText("CANCELAR");
+        jButton10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        getContentPane().add(jButton10, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel3, gridBagConstraints);
+        jLabel3.getAccessibleContext().setAccessibleName("Texto1");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel4, gridBagConstraints);
+        jLabel4.getAccessibleContext().setAccessibleName("Texto2");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel5, gridBagConstraints);
+        jLabel5.getAccessibleContext().setAccessibleName("Texto3");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel6, gridBagConstraints);
+        jLabel6.getAccessibleContext().setAccessibleName("Texto4");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel7, gridBagConstraints);
+        jLabel7.getAccessibleContext().setAccessibleName("Texto5");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel8, gridBagConstraints);
+        jLabel8.getAccessibleContext().setAccessibleName("Texto6");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel9, gridBagConstraints);
+        jLabel9.getAccessibleContext().setAccessibleName("Texto7");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jLabel10, gridBagConstraints);
+        jLabel10.getAccessibleContext().setAccessibleName("Texto8");
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jScrollPane2, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -338,58 +469,199 @@ public class bInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_depositMoneyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ///addNumber("1");
+        if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="1";
+            this.idC+="1";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="1";
+            this.senha+="1";
+            this.jLabel5.setText(captura);
+        }else if(controle==8){
+            //VER SALDO (this.banco.verificaSenha(Integer.parseInt(this.idC),Integer.parseInt(this.senha)))
+            this.jLabel3.setText("Consulta de saldo.");
+            this.jLabel4.setText("");
+            saldo = Integer.parseInt(this.idC);
+            this.jLabel5.setText("Seu saldo é de: %",saldo);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-       // addNumber("2");
+        if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="2";
+            this.idC+="2";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="2";
+            this.senha+="2";
+            this.jLabel5.setText(captura);
+        }else if(controle==8){
+            //Depositar dinheiro
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-       // addNumber("3");
+        if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="3";
+            this.idC+="3";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="3";
+            this.senha+="3";
+            this.jLabel5.setText(captura);
+        }else if(controle==8){
+            //Sacar dinheiro
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-     //   addNumber("4");
+       if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="4";
+            this.idC+="4";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="4";
+            this.senha+="4";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-      //  addNumber("5");
+       if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="5";
+            this.idC+="5";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="5";
+            this.senha+="5";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-       // addNumber("6");
+        if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="6";
+            this.idC+="6";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="6";
+            this.senha+="6";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-       // addNumber("7");
+       if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="7";
+            this.idC+="7";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="7";
+            this.senha+="7";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-      //  addNumber("8");
+       if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="8";
+            this.idC+="8";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="8";
+            this.senha+="8";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-       // addNumber("9");
+        if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="9";
+            this.idC+="9";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="9";
+            this.senha+="9";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton0ActionPerformed
-        // TODO add your handling code here:
-      //  addNumber("0");
+       if(controle==4){
+            String captura=this.jLabel4.getText();
+            captura+="0";
+            this.idC+="0";
+            this.jLabel4.setText(captura);
+        }else if(controle==5){
+            String captura=this.jLabel5.getText();
+            captura+="0";
+            this.senha+="0";
+            this.jLabel5.setText(captura);
+        }
     }//GEN-LAST:event_jButton0ActionPerformed
 
     private void jButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnterActionPerformed
-        // TODO add your handling code here:
+        if(controle==4){
+            controle=5;
+        }else if(controle==5){
+            if(this.banco.verificaSenha(Integer.parseInt(this.idC),Integer.parseInt(this.senha))){    
+                //MONTAR INTERFACE LOGIN SUCESSO
+                controle=6;
+            
+            }else{
+                controle=7;
+            }
+        }else if(controle==6){
+          
+            this.jLabel3.setText("Login concedido");
+            this.jLabel4.setText("Pressione Enter para continuar");
+            controle = 8;
+            
+        }else if(controle==7){
+
+            this.jLabel3.setText("Login não concedido");
+            this.jLabel3.setText("Pressione Enter para continuar");
+            //CHAMAR A INTERFACE DENOVO            
+        
+            
+        }else if(controle==8){
+            
+            this.jLabel3.setText("Escolha a opção desejada:");
+            this.jLabel4.setText("1: Ver Saldo.");
+            this.jLabel5.setText("2: Depositar dinheiro.");
+            this.jLabel6.setText("3: Sacar dinheiro.");
+            this.jLabel7.setText("Cancelar para sair.");
+            
+            
+            
+            
+        }
     }//GEN-LAST:event_jButtonEnterActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        //this.idContaText.setText("");
+        //this.senhaText.setText("");
+        this.parent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,11 +697,12 @@ public class bInterface extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton depositMoney;
     private javax.swing.JButton jButton0;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -440,9 +713,17 @@ public class bInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonEnter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton withdrawMoney;
     // End of variables declaration//GEN-END:variables
 }

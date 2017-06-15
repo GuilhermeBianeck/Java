@@ -12,7 +12,7 @@ public class ClienteGUI extends javax.swing.JFrame {
     }
 
     private final TelaAbrirConta TabrirConta;
-    private final TelaLogin Tlogin;
+    private final bInterface Tlogin;
     private Banco banco;
     /**
      * Creates new form ClienteGUI
@@ -20,7 +20,7 @@ public class ClienteGUI extends javax.swing.JFrame {
     public ClienteGUI() {
         initComponents();
         this.TabrirConta= new TelaAbrirConta();
-        this.Tlogin= new TelaLogin();
+        this.Tlogin= new bInterface();
         
     }
 
