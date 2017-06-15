@@ -17,7 +17,7 @@ public class Banco {
         
     private static final List<Conta> contas= new ArrayList<Conta>() ;
     private static final long serialVersionUID = 1L;
-    private static double saldoCaixa = 500.0;
+    public static double saldoCaixa = 10000.0;
     
     public Banco() throws FileNotFoundException, IOException{
         super();

@@ -39,13 +39,13 @@ public class ClienteGUI extends javax.swing.JFrame {
         Sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Banco RMI");
+        setTitle("ATM - KINHAS BIANECK");
         setName("JanelaPrincipal"); // NOI18N
         setResizable(false);
 
-        jLabel1.setText("SERVIDOR RMI BANCO");
+        jLabel1.setText("Servidor do terminal");
 
-        efetuarLoging.setText("Efetuar Loging");
+        efetuarLoging.setText("Efetuar Login");
         efetuarLoging.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 efetuarLogingActionPerformed(evt);

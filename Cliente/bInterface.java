@@ -27,6 +27,7 @@ public class bInterface extends javax.swing.JFrame {
     private int controle=4;
     private Timer timer;
     private Conta conta=null;
+    private double vdepositado=0.0;
     
     Banco banco;
 
@@ -81,6 +82,15 @@ public class bInterface extends javax.swing.JFrame {
         this.senha="";
         this.controle=4;
         this.conta=null;
+        this.vdepositado=0.0;
+    }
+    
+    public void saqueTela(){
+         this.jLabel3.setText("");
+         this.jLabel4.setText("Saque realizado com sucesso !");
+         this.jLabel5.setText("Retire seu dinheiro.");
+         this.jLabel6.setText("Pressione enter para continuar:");
+         this.jLabel7.setText("");
     }
     
     /**
@@ -485,18 +495,20 @@ public class bInterface extends javax.swing.JFrame {
         this.timer.stop();
         if(controle==80){
             controle=-1;
-            this.jLabel3.setText("");
-            this.jLabel4.setText("Depósito realizado com sucesso !!!");
-            this.jLabel5.setText("");
-            this.jLabel6.setText("Pressione enter para continuar:");
+            
             try {
-                this.banco.depositar(Integer.parseInt(this.idC), Double.parseDouble(this.jLabel4.getText()));
-
+            
+                this.banco.depositar(Integer.parseInt(this.idC), this.vdepositado);
+            
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
             } catch (UnsupportedEncodingException ex) {
              Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.jLabel3.setText("");
+            this.jLabel4.setText("Depósito realizado com sucesso !!!");
+            this.jLabel5.setText("");
+            this.jLabel6.setText("Pressione enter para continuar:");
         }
     }//GEN-LAST:event_depositMoneyActionPerformed
 
@@ -528,9 +540,16 @@ public class bInterface extends javax.swing.JFrame {
             captura+="1";
             this.jLabel4.setText(captura);
         }else if(controle==82){
-            String captura=this.jLabel4.getText();
+            String captura=this.jLabel7.getText();
             captura+="1";
-            this.jLabel4.setText(captura);
+            this.jLabel7.setText(captura);
+            try {
+               if(!this.banco.saque(Integer.parseInt(this.idC), 20)||this.banco.saldoCaixa<20){
+                   controle=85;
+               }
+           } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+               Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -547,11 +566,10 @@ public class bInterface extends javax.swing.JFrame {
             this.jLabel5.setText(captura);
         }else if(controle==8){
             //Depositar dinheiro
-            
             this.jLabel4.setText("");
             this.jLabel5.setText("");
-            this.jLabel6.setText("");
-            this.jLabel7.setText("");
+            this.jLabel7.setText("Digite o valor com 2 casas decimais.");
+            this.jLabel6.setText("Atenção, não há casas decimais.");
             this.jLabel3.setText("Valor a ser depositado: ");
             this.controle=80;
         }else if(controle==80){
@@ -559,15 +577,21 @@ public class bInterface extends javax.swing.JFrame {
             captura+="2";
             this.jLabel4.setText(captura);
         }else if(controle==82){
-            String captura=this.jLabel4.getText();
+            String captura=this.jLabel7.getText();
             captura+="2";
-            this.jLabel4.setText(captura);
+            this.jLabel7.setText(captura);
+            try {
+               if(!this.banco.saque(Integer.parseInt(this.idC), 40)||this.banco.saldoCaixa<40){
+                   controle=85;
+               }
+           } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+               Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     ActionListener suaActionListener = new ActionListener() {  
         public void actionPerformed(java.awt.event.ActionEvent e) {    
-               System.out.println("Comi gostoso a professora");
 ///Aqui dentro vai o codigo que trocara as imagens que voce quiser de acordo com o tempo passado pelo timer que neste caso e de 1 segundo
     }};
     
@@ -584,17 +608,30 @@ public class bInterface extends javax.swing.JFrame {
             this.jLabel5.setText(captura);
         }else if(controle==8){
             //Sacar dinheiro
-            this.jLabel4.setText("");
-            this.jLabel5.setText("");
-            this.jLabel6.setText("");
+            this.jLabel3.setText("Escolha o valor a ser sacado:");
+            this.jLabel4.setText("1 - 20R$    2 - 40R$");
+            this.jLabel5.setText("3 - 60R$    4 - 100R$");
+            this.jLabel6.setText("5 - 200R$");
             this.jLabel7.setText("");
-            this.jLabel3.setText("Valor a ser sacado: ");
             this.controle=82;
             
-        }else if(controle==82){
+        }else if(controle==80){
             String captura=this.jLabel4.getText();
             captura+="3";
             this.jLabel4.setText(captura);
+            
+        }else if(controle==82){
+            String captura=this.jLabel7.getText();
+            captura+="3";
+            this.jLabel7.setText(captura);
+            try {
+               if(!this.banco.saque(Integer.parseInt(this.idC), 60)||this.banco.saldoCaixa<60){
+                   controle=85;
+               }
+               
+           } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+               Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -614,9 +651,16 @@ public class bInterface extends javax.swing.JFrame {
             captura+="4";
             this.jLabel4.setText(captura);
         }else if(controle==82){
-            String captura=this.jLabel4.getText();
+            String captura=this.jLabel7.getText();
             captura+="4";
-            this.jLabel4.setText(captura);
+            this.jLabel7.setText(captura);
+            try {
+               if(!this.banco.saque(Integer.parseInt(this.idC), 100)||this.banco.saldoCaixa<100){
+                   controle=85;
+               }
+           } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+               Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -636,9 +680,16 @@ public class bInterface extends javax.swing.JFrame {
             captura+="5";
             this.jLabel4.setText(captura);
         }else if(controle==82){
-            String captura=this.jLabel4.getText();
+            String captura=this.jLabel7.getText();
             captura+="5";
-            this.jLabel4.setText(captura);
+            this.jLabel7.setText(captura);
+           try {
+               if(!this.banco.saque(Integer.parseInt(this.idC), 200)||this.banco.saldoCaixa<200){
+                   controle=85;
+               }
+           } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+               Logger.getLogger(bInterface.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -654,10 +705,6 @@ public class bInterface extends javax.swing.JFrame {
             this.senha+="6";
             this.jLabel5.setText(captura);
         }else if(controle==80){
-            String captura=this.jLabel4.getText();
-            captura+="6";
-            this.jLabel4.setText(captura);
-        }else if(controle==82){
             String captura=this.jLabel4.getText();
             captura+="6";
             this.jLabel4.setText(captura);
@@ -679,10 +726,6 @@ public class bInterface extends javax.swing.JFrame {
             String captura=this.jLabel4.getText();
             captura+="7";
             this.jLabel4.setText(captura);
-        }else if(controle==82){
-            String captura=this.jLabel4.getText();
-            captura+="7";
-            this.jLabel4.setText(captura);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -698,10 +741,6 @@ public class bInterface extends javax.swing.JFrame {
             this.senha+="8";
             this.jLabel5.setText(captura);
         }else if(controle==80){
-            String captura=this.jLabel4.getText();
-            captura+="8";
-            this.jLabel4.setText(captura);
-        }else if(controle==82){
             String captura=this.jLabel4.getText();
             captura+="8";
             this.jLabel4.setText(captura);
@@ -723,10 +762,6 @@ public class bInterface extends javax.swing.JFrame {
             String captura=this.jLabel4.getText();
             captura+="9";
             this.jLabel4.setText(captura);
-        }else if(controle==82){
-            String captura=this.jLabel4.getText();
-            captura+="9";
-            this.jLabel4.setText(captura);
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -742,10 +777,6 @@ public class bInterface extends javax.swing.JFrame {
             this.senha+="0";
             this.jLabel5.setText(captura);
         }else if(controle==80){
-            String captura=this.jLabel4.getText();
-            captura+="0";
-            this.jLabel4.setText(captura);
-        }else if(controle==82){
             String captura=this.jLabel4.getText();
             captura+="0";
             this.jLabel4.setText(captura);
@@ -792,26 +823,32 @@ public class bInterface extends javax.swing.JFrame {
             this.jLabel6.setText("3: Sacar dinheiro.");
             this.jLabel7.setText("Cancelar para sair.");
             
-        }else if(controle==80){        
+        }else if(controle==80){     
+            this.vdepositado=Double.parseDouble(this.jLabel4.getText())/100;
+            
             this.jLabel3.setText("");
             this.jLabel4.setText("Deposite o dinheiro no local indicado.");
             this.jLabel5.setText("A operacao sera cancelada em 2 minutos por inatividade");
+            this.jLabel6.setText("");
+            this.jLabel7.setText("");
             this.timer = new Timer(120000, suaActionListener);  //2minutos de espera
             //Inicia o timer
             this.timer.start();
                   
-        }else if(controle==81){
+        }else if(controle==+81){
             controle=-1;
             
         }else if(controle==82){
             controle=-1;
-            this.jLabel3.setText("");
-            this.jLabel4.setText("Saque realizado com sucesso !");
-            this.jLabel5.setText("Retire seu dinheiro.");
-            this.jLabel6.setText("Pressione enter para continuar:");
-            this.banco.saque(Integer.parseInt(this.idC), Double.parseDouble(this.jLabel4.getText()));
-
-        
+            this.saqueTela();
+        }else if(controle==85){
+            //Controle deposito errado
+            this.jLabel3.setText("Saldo ou valor indisponivel.");
+            this.jLabel4.setText("");
+            this.jLabel5.setText("Tente novamente.");
+            this.jLabel6.setText("");
+            this.jLabel7.setText("Pressione Enter para continuar.");
+            controle=-1;
         }
     }//GEN-LAST:event_jButtonEnterActionPerformed
 

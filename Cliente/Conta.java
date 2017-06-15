@@ -13,6 +13,8 @@ public class Conta{
     public boolean saque(double valor){
         if (saldo>=valor){
             saldo=saldo-valor;
+            Banco.saldoCaixa=Banco.saldoCaixa -valor;
+            System.out.printf("%f",Banco.saldoCaixa);
             return true;
         }
         return false;
